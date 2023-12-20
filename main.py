@@ -20,7 +20,7 @@ stock_params = {
 response = requests.get(STOCK_ENDPOINT, params=stock_params)
 data = response.json()['Time Series (Daily)']
 data_list = [value for (key, value) in data.items()]
-print(data_list)
+# print(data_list)
 
 yesterday_close = float(data_list[0]['4. close'])
 day_before_yes_close = float(data_list[1]['4. close'])
@@ -38,7 +38,7 @@ print(difference)
 
 #TODO 4. - Work out the percentage difference in price between closing price yesterday and closing price the day before yesterday.
 percent_diff = (difference / day_before_yes_close ) * 100
-print(percent_diff)
+# print(percent_diff)
 
 #TODO 5. - If TODO4 percentage is greater than 5 then print("Get News").
 
@@ -59,16 +59,19 @@ if percent_diff > 1:
     #TODO 7. - Use Python slice operator to create a list that contains the first 3 articles. Hint: https://stackoverflow.com/questions/509211/understanding-slice-notation
 
     three_articles = news_data[:3]
-    print(three_articles)
+    # print(three_articles)
 
     ## STEP 3: Use twilio.com/docs/sms/quickstart/python
     #to send a separate message with each article's title and description to your phone number. 
 
 #TODO 8. - Create a new list of the first 3 article's headline and description using list comprehension.
 
+formatted_articles_list = [ f"Headline: {article['title']}. \n Brief: {article['description']}" for article in three_articles]
+print(formatted_articles_list)
+
 #TODO 9. - Send each article as a separate message via Twilio. 
 
-
+X X X
 
 #Optional TODO: Format the message like this: 
 """
@@ -80,4 +83,3 @@ or
 Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
 Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
 """
-
